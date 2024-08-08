@@ -1,8 +1,3 @@
-# Helper function
-kdist <- function(x1, y1, x2, y2){
-  return(sqrt((x1-x2)^2 + (y1-y2)^2))
-}
-
 #' Equal-size kmeans
 #' 
 #' @description `kMeansEqual` Assigns `k` cluster identifiers to a data frame `kdat` whereby each cluster is of (nearly) equal size.
@@ -81,4 +76,9 @@ kMeansEqual <- function(kdat, k, centers = NULL, add.centers = FALSE, assigned.t
   }
   
   return(kdat)
+}
+
+# Helper function
+kdist <- function(x1, y1, x2, y2){
+  return(sqrt((x1-x2)^2 + (y1-y2)^2))
 }
