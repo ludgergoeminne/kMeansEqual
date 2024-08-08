@@ -28,3 +28,14 @@ This attribute can immediately be plugged into the `centers` argument if this fu
 \description{
 `kMeansEqual` Assigns `k` cluster identifiers to a data frame `kdat` whereby each cluster is of (nearly) equal size.
 }
+\examples{
+data(mtcars)
+kdat <- mtcars \%>\% dplyr::select(c(mpg, wt))
+res <- kMeansEqual(kdat = kdat, k = 3, add.centers = TRUE)
+
+# Get the data frame with the assigned clusters
+res
+# View the cluster centers
+attr(res, "centers")
+
+}
