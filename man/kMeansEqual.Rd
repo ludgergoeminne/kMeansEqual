@@ -7,35 +7,45 @@
 kMeansEqual(
   kdat,
   k,
+  columns = NULL,
   centers = NULL,
   add.centers = FALSE,
-  assigned.to = "assigned"
+  assigned.to = "assigned",
+  seed = NULL
 )
 }
 \arguments{
-\item{kdat}{A data frame with 2 columns.}
+\item{kdat}{A data frame to which we want to add a column with cluster identifiers.}
 
 \item{k}{The number of clusters. Each of the `k` clusters will contain at least `floor(nrow(kdat)/k)` elements.}
 
-\item{centers}{An optional data frame with `k` rows and 2 columns indicating the centers of each of the `k` clusters. If `NULL` (default), the cluster centers will be calculated with the `kmeans` function.}
+\item{columns}{The columns of `kdat` that will be used for clustering.}
+
+\item{centers}{An optional matrix with `k` rows and 2 columns indicating the centers of each of the `k` clusters. If `NULL` (default), the cluster centers will be calculated with the `kmeans` function.}
 
 \item{add.centers}{A boolean indicating wheter new cluster centers need to be calculated. 
 If `TRUE`, an attribute named `"centers"`  will be added to the output that contains the data frame with the new cluster centers. 
 This attribute can immediately be plugged into the `centers` argument if this function is to be executed iteratively. Defaults to `FALSE`.}
 
 \item{assigned.to}{A character vector indicating the name of the column that will contain the cluster identifier. Defaults to `"assigned"`.}
+
+\item{seed}{A numeric value that can be set to generate a seed to make the clustering procedure reproducible.}
 }
 \description{
 `kMeansEqual` Assigns `k` cluster identifiers to a data frame `kdat` whereby each cluster is of (nearly) equal size.
 }
 \examples{
 data(mtcars)
-kdat <- mtcars \%>\% dplyr::select(c(mpg, wt))
-res <- kMeansEqual(kdat = kdat, k = 3, add.centers = TRUE)
+# Cluster the mtcars dataset on `mpg` and `wt`
+res <- kMeansEqual(kdat = mtcars, columns = c("mpg", "wt"), k = 3, add.centers = TRUE)
 
 # Get the data frame with the assigned clusters
 res
 # View the cluster centers
 attr(res, "centers")
 
+# Re-iterate the procedure with the new cluster centers
+res2 <- kMeansEqual(kdat = mtcars, columns = c("mpg", "wt"), centers = attr(res, "centers"), k = 3, add.centers = TRUE)
+# View the new cluster centers
+attr(res2, "centers")
 }
