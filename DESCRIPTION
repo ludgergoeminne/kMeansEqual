@@ -1,7 +1,7 @@
 Package: kMeansEqual
 Type: Package
 Title: Equal Size kmeans
-Version: 0.0.1
+Version: 0.0.2
 Author: Ludger Goeminne
 Maintainer: Ludger Goeminne <lgoeminne@bwh.harvard.edu>
 Description: `kMeansEqual` Assigns `k` cluster identifiers to a data frame `kdat` whereby each cluster is of (nearly) equal size.
