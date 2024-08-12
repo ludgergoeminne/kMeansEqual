@@ -1,4 +1,4 @@
-#' Equal-size kmeans
+#' Equal-size K-Means Clustering
 #' 
 #' @description `kMeansEqual` Assigns `k` cluster identifiers to a data frame `kdat` whereby each cluster is of (nearly) equal size.
 #' @param kdat A data frame to which we want to add a column with cluster identifiers.
