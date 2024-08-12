@@ -69,9 +69,12 @@ kMeansEqual <- function(kdat, k, columns = NULL, centers = NULL, add.centers = F
   }
   
   working <- distances[kdat[, assigned.to] == 0,]
-  for(i in 1:nrow(working)){
-    # These leftover points get assigned to whoever's closest, without regard to k
-    kdat[distances$index == working$index[i], assigned.to] <- which(working[i, (1:k)] == min(working[i, (1:k)]))
+  
+  if(nrow(working) != 0){
+    for(i in 1:nrow(working)){
+      # These leftover points get assigned to whoever's closest, without regard to k
+      kdat[distances$index == working$index[i], assigned.to] <- which(working[i, (1:k)] == min(working[i, (1:k)]))
+    }
   }
   
   if(add.centers){
