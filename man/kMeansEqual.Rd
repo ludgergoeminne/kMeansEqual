@@ -2,7 +2,7 @@
 % Please edit documentation in R/kMeansEqual.R
 \name{kMeansEqual}
 \alias{kMeansEqual}
-\title{Equal-size kmeans}
+\title{Equal-size K-Means Clustering}
 \usage{
 kMeansEqual(
   kdat,
